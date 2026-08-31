@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MORSALIN AGENCY — Creative Digital Agency</title>
+<meta name="description" content="MORSALIN AGENCY creates premium websites, digital experiences, brands, and creative solutions that help businesses grow.">
+<meta property="og:title" content="MORSALIN AGENCY — Creative Digital Agency">
+<meta property="og:description" content="We build digital experiences that move businesses forward.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.cdnfonts.com">
+<link href="https://fonts.cdnfonts.com/css/inter" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/space-grotesk" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/font/lucide.css">
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070707;
+  --bg-2:#0c0c0c;
+  --bg-3:#111111;
+  --text:#FFFFFF;
+  --text-2:#A1A1A1;
+  --text-3:#6B6B6B;
+  --accent:#6366f1;
+  --accent-2:#a855f7;
+  --accent-3:#3b82f6;
+  --border:rgba(255,255,255,0.08);
+  --border-2:rgba(255,255,255,0.14);
+  --card:rgba(255,255,255,0.025);
+  --card-hover:rgba(255,255,255,0.05);
+  --gradient:linear-gradient(135deg,#6366f1 0%,#a855f7 50%,#3b82f6 100%);
+  --gradient-2:linear-gradient(135deg,#a855f7 0%,#6366f1 100%);
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:var(--font-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;font-size:16px}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:500;letter-spacing:-0.02em;line-height:1.1}
+
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#222;border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:#333}
+
+.container{max-width:1440px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.container{padding:0 20px}}
+
+/* ===== NAVBAR ===== */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 0;transition:all 0.4s var(--ease)}
+.navbar.scrolled{background:rgba(7,7,7,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:16px 0;border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-display);font-size:18px;font-weight:500;letter-spacing:0.15em;display:flex;align-items:center;gap:10px}
+.nav-logo::before{content:'';width:8px;height:8px;background:var(--gradient);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:40px}
+.nav-links a{font-size:14px;color:var(--text-2);transition:color 0.3s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:1px;background:var(--gradient);transition:width 0.3s var(--ease)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:12px 24px;background:var(--text);color:var(--bg);border-radius:100px;font-size:14px;font-weight:500;transition:all 0.3s var(--ease);display:flex;align-items:center;gap:8px}
+.nav-cta:hover{background:var(--gradient);color:#fff;transform:translateY(-2px)}
+.nav-cta svg{width:14px;height:14px;transition:transform 0.3s}
+.nav-cta:hover svg{transform:translateX(3px)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;z-index:1001}
+.hamburger span{width:24px;height:1.5px;background:var(--text);transition:all 0.3s}
+.hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:32px;opacity:0;pointer-events:none;transition:opacity 0.4s}
+.mobile-menu.active{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:var(--font-display);font-size:32px;color:var(--text-2);transition:color 0.3s}
+.mobile-menu a:hover{color:var(--text)}
+@media(max-width:1024px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
+.hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;filter:blur(120px);opacity:0.35;animation:float 20s ease-in-out infinite}
+.hero-glow-1{top:-200px;left:-200px;background:radial-gradient(circle,#6366f1 0%,transparent 70%)}
+.hero-glow-2{bottom:-200px;right:-200px;background:radial-gradient(circle,#a855f7 0%,transparent 70%);animation-delay:-10s}
+.hero-glow-3{top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#3b82f6 0%,transparent 70%);opacity:0.2;animation-delay:-5s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-30px) scale(1.1)}}
+.hero-particles{position:absolute;inset:0}
+.particle{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:0.3;animation:particleFloat linear infinite}
+@keyframes particleFloat{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:0.5}90%{opacity:0.5}100%{transform:translateY(-10vh) translateX(50px);opacity:0}}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:1200px;margin:0 auto}
+.hero-label{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border:1px solid var(--border);border-radius:100px;font-size:12px;letter-spacing:0.2em;color:var(--text-2);margin-bottom:40px;background:var(--card);backdrop-filter:blur(10px)}
+.hero-label::before{content:'';width:6px;height:6px;background:var(--gradient);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.hero-title{font-size:clamp(48px,8vw,120px);font-weight:500;line-height:0.95;letter-spacing:-0.04em;margin-bottom:32px}
+.hero-title .line{display:block;overflow:hidden}
+.hero-title .line-inner{display:block;transform:translateY(100%)}
+.hero-title .gradient{background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradientShift 8s ease infinite}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-subtitle{font-size:clamp(16px,1.5vw,20px);color:var(--text-2);max-width:680px;margin:0 auto 48px;line-height:1.6}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{padding:16px 32px;border-radius:100px;font-size:15px;font-weight:500;transition:all 0.4s var(--ease);display:inline-flex;align-items:center;gap:10px;position:relative;overflow:hidden}
+.btn-primary{background:var(--text);color:var(--bg)}
+.btn-primary:hover{background:var(--gradient);color:#fff;transform:translateY(-2px);box-shadow:0 20px 40px -20px rgba(99,102,241,0.5)}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border-2)}
+.btn-secondary:hover{border-color:var(--text);background:var(--card);transform:translateY(-2px)}
+.btn svg{width:16px;height:16px;transition:transform 0.3s}
+.btn:hover svg{transform:translateX(4px)}
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-3);font-size:11px;letter-spacing:0.2em}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--text-3),transparent);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:50%;background:var(--text);animation:scrollDown 2s ease-in-out infinite}
+@keyframes scrollDown{0%{top:-50%}100%{top:150%}}
+
+/* ===== MARQUEE / TRUSTED BY ===== */
+.marquee-section{padding:80px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden}
+.marquee-label{text-align:center;font-size:12px;letter-spacing:0.3em;color:var(--text-3);margin-bottom:48px}
+.marquee{display:flex;overflow:hidden;mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent)}
+.marquee-track{display:flex;gap:80px;animation:marquee 30s linear infinite;flex-shrink:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{font-family:var(--font-display);font-size:28px;font-weight:500;color:var(--text-3);white-space:nowrap;opacity:0.5;transition:opacity 0.3s;display:flex;align-items:center;gap:16px}
+.marquee-item:hover{opacity:1}
+.marquee-item::before{content:'◆';font-size:10px;color:var(--accent)}
+
+/* ===== SECTIONS ===== */
+section{padding:140px 0;position:relative}
+@media(max-width:768px){section{padding:80px 0}}
+.section-header{text-align:center;max-width:800px;margin:0 auto 80px}
+.section-label{display:inline-block;font-size:12px;letter-spacing:0.3em;color:var(--accent);margin-bottom:24px;text-transform:uppercase}
+.section-title{font-size:clamp(36px,5vw,64px);font-weight:500;letter-spacing:-0.03em;margin-bottom:24px}
+.section-subtitle{font-size:18px;color:var(--text-2);line-height:1.6}
+
+/* ===== SERVICES ===== */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:1024px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.services-grid{grid-template-columns:1fr}}
+.service-card{padding:40px;border:1px solid var(--border);border-radius:20px;background:var(--card);backdrop-filter:blur(10px);transition:all 0.5s var(--ease);position:relative;overflow:hidden;cursor:pointer}
+.service-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(99,102,241,0.15),transparent 50%);opacity:0;transition:opacity 0.5s}
+.service-card:hover{border-color:var(--border-2);transform:translateY(-8px);background:var(--card-hover)}
+.service-card:hover::before{opacity:1}
+.service-number{font-family:var(--font-display);font-size:14px;color:var(--text-3);margin-bottom:32px;letter-spacing:0.1em}
+.service-icon{width:48px;height:48px;margin-bottom:24px;color:var(--text);transition:all 0.4s}
+.service-card:hover .service-icon{color:var(--accent);transform:scale(1.1)}
+.service-name{font-family:var(--font-display);font-size:22px;font-weight:500;margin-bottom:12px;letter-spacing:-0.01em}
+.service-desc{font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:32px}
+.service-arrow{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-3);transition:all 0.3s}
+.service-arrow svg{width:14px;height:14px;transition:transform 0.3s}
+.service-card:hover .service-arrow{color:var(--text)}
+.service-card:hover .service-arrow svg{transform:translateX(6px)}
+
+/* ===== WORK ===== */
+.work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.work-item{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:4/3}
+.work-item:nth-child(1){grid-column:span 7}
+.work-item:nth-child(2){grid-column:span 5}
+.work-item:nth-child(3){grid-column:span 5}
+.work-item:nth-child(4){grid-column:span 7}
+.work-item:nth-child(5){grid-column:span 6}
+.work-item:nth-child(6){grid-column:span 6}
+@media(max-width:1024px){
+  .work-item{grid-column:span 6!important}
+}
+@media(max-width:640px){
+  .work-item{grid-column:span 12!important;aspect-ratio:4/3}
+}
+.work-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.work-item:hover .work-image{transform:scale(1.08)}
+.work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.3) 50%,transparent 100%);opacity:0;transition:opacity 0.5s;display:flex;flex-direction:column;justify-content:flex-end;padding:40px}
+.work-item:hover .work-overlay{opacity:1}
+.work-category{font-size:12px;letter-spacing:0.2em;color:var(--accent);margin-bottom:12px}
+.work-name{font-family:var(--font-display);font-size:28px;font-weight:500;margin-bottom:8px;letter-spacing:-0.02em}
+.work-desc{font-size:14px;color:var(--text-2);margin-bottom:16px}
+.work-meta{display:flex;align-items:center;justify-content:space-between}
+.work-year{font-size:13px;color:var(--text-3)}
+.work-view{width:44px;height:44px;border-radius:50%;background:var(--text);color:var(--bg);display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.work-view svg{width:16px;height:16px;transition:transform 0.3s}
+.work-item:hover .work-view svg{transform:translateX(2px) translateY(-2px)}
+.work-view:hover{background:var(--gradient);color:#fff}
+.work-cta{text-align:center;margin-top:64px}
+
+/* ===== CASE STUDY ===== */
+.case-study{background:var(--bg-2);border-radius:32px;padding:80px;border:1px solid var(--border);overflow:hidden;position:relative}
+@media(max-width:768px){.case-study{padding:40px 24px}}
+.case-study::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(99,102,241,0.15),transparent 70%);filter:blur(60px)}
+.case-study-label{font-size:12px;letter-spacing:0.3em;color:var(--accent);margin-bottom:16px}
+.case-study-client{font-family:var(--font-display);font-size:clamp(48px,8vw,96px);font-weight:500;letter-spacing:-0.04em;margin-bottom:48px;background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.case-study-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-bottom:64px}
+@media(max-width:768px){.case-study-grid{grid-template-columns:1fr;gap:40px}}
+.case-study-block-label{font-size:12px;letter-spacing:0.2em;color:var(--text-3);margin-bottom:16px;text-transform:uppercase}
+.case-study-block-text{font-size:18px;line-height:1.6;color:var(--text-2)}
+.case-study-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:48px;border-top:1px solid var(--border)}
+@media(max-width:640px){.case-study-stats{grid-template-columns:1fr;gap:24px}}
+.stat-number{font-family:var(--font-display);font-size:clamp(48px,6vw,72px);font-weight:500;letter-spacing:-0.03em;background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat-label{font-size:14px;color:var(--text-2);margin-top:12px}
+
+/* ===== WHY CHOOSE US ===== */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+@media(max-width:768px){.why-grid{grid-template-columns:1fr}}
+.why-item{padding:48px;border:1px solid var(--border);border-radius:20px;transition:all 0.4s var(--ease);position:relative;overflow:hidden}
+.why-item:hover{border-color:var(--border-2);background:var(--card)}
+.why-number{font-family:var(--font-display);font-size:14px;color:var(--text-3);margin-bottom:24px;letter-spacing:0.1em}
+.why-title{font-family:var(--font-display);font-size:clamp(28px,3vw,40px);font-weight:500;letter-spacing:-0.02em;margin-bottom:16px}
+.why-desc{font-size:15px;color:var(--text-2);line-height:1.6}
+
+/* ===== PROCESS ===== */
+.process-timeline{position:relative;padding:40px 0}
+.process-line{position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border);transform:translateY(-50%)}
+@media(max-width:1024px){.process-line{top:0;left:24px;bottom:0;width:1px;height:auto;transform:none}}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;position:relative}
+@media(max-width:1024px){.process-steps{grid-template-columns:1fr;gap:40px;padding-left:60px}}
+.process-step{position:relative;padding:32px;border:1px solid var(--border);border-radius:20px;background:var(--card);transition:all 0.4s var(--ease)}
+.process-step:hover{border-color:var(--border-2);background:var(--card-hover);transform:translateY(-4px)}
+.process-step-number{width:48px;height:48px;border-radius:50%;background:var(--bg);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:14px;font-weight:500;margin-bottom:24px;position:relative;z-index:2}
+@media(max-width:1024px){.process-step-number{position:absolute;left:-60px;top:0}}
+.process-step-title{font-family:var(--font-display);font-size:22px;font-weight:500;margin-bottom:12px;letter-spacing:-0.01em}
+.process-step-desc{font-size:14px;color:var(--text-2);line-height:1.6}
+
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:1024px){.about-grid{grid-template-columns:1fr;gap:48px}}
+.about-image{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden}
+.about-image img{width:100%;height:100%;object-fit:cover}
+.about-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.3),transparent 50%)}
+.about-content .section-label{text-align:left}
+.about-content .section-title{text-align:left;font-size:clamp(32px,4vw,56px)}
+.about-desc{font-size:18px;color:var(--text-2);line-height:1.7;margin-bottom:48px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:48px;padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-stat-number{font-family:var(--font-display);font-size:36px;font-weight:500;letter-spacing:-0.02em}
+.about-stat-label{font-size:13px;color:var(--text-2);margin-top:4px}
+
+/* ===== STATS ===== */
+.stats-section{padding:100px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:40px}}
+.stat-item{text-align:center;padding:32px}
+.stat-item-number{font-family:var(--font-display);font-size:clamp(48px,6vw,80px);font-weight:500;letter-spacing:-0.03em;background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat-item-label{font-size:14px;color:var(--text-2);margin-top:16px;letter-spacing:0.05em}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials{overflow:hidden}
+.testimonial-slider{position:relative;max-width:900px;margin:0 auto}
+.testimonial-track{position:relative;min-height:320px}
+.testimonial-slide{position:absolute;top:0;left:0;width:100%;opacity:0;transition:opacity 0.6s var(--ease);padding:48px;border:1px solid var(--border);border-radius:24px;background:var(--card);backdrop-filter:blur(10px)}
+.testimonial-slide.active{opacity:1;position:relative}
+.testimonial-stars{display:flex;gap:4px;margin-bottom:24px;color:#fbbf24}
+.testimonial-stars svg{width:18px;height:18px;fill:currentColor}
+.testimonial-text{font-size:20px;line-height:1.6;color:var(--text);margin-bottom:40px;font-style:italic;letter-spacing:-0.01em}
+.testimonial-author{display:flex;align-items:center;gap:16px}
+.testimonial-avatar{width:56px;height:56px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:20px;font-weight:500;color:#fff;flex-shrink:0}
+.testimonial-name{font-family:var(--font-display);font-size:16px;font-weight:500;margin-bottom:4px}
+.testimonial-role{font-size:13px;color:var(--text-2)}
+.testimonial-controls{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:48px}
+.testimonial-btn{width:48px;height:48px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.testimonial-btn:hover{border-color:var(--text);background:var(--card)}
+.testimonial-btn svg{width:18px;height:18px}
+.testimonial-dots{display:flex;gap:8px}
+.testimonial-dot{width:8px;height:8px;border-radius:50%;background:var(--border-2);transition:all 0.3s;cursor:pointer}
+.testimonial-dot.active{background:var(--text);width:24px;border-radius:4px}
+
+/* ===== FAQ ===== */
+.faq-list{max-width:900px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-question{width:100%;padding:32px 0;display:flex;align-items:center;justify-content:space-between;text-align:left;font-family:var(--font-display);font-size:20px;font-weight:500;transition:color 0.3s}
+.faq-question:hover{color:var(--accent)}
+.faq-icon{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
+.faq-item.active .faq-icon{background:var(--text);color:var(--bg);transform:rotate(45deg)}
+.faq-icon svg{width:14px;height:14px}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease)}
+.faq-answer-inner{padding:0 0 32px;color:var(--text-2);font-size:16px;line-height:1.7}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+@media(max-width:1024px){.contact-grid{grid-template-columns:1fr;gap:48px}}
+.contact-info .section-label{text-align:left}
+.contact-info .section-title{text-align:left;font-size:clamp(36px,5vw,64px)}
+.contact-desc{font-size:18px;color:var(--text-2);line-height:1.7;margin-bottom:48px}
+.contact-details{display:flex;flex-direction:column;gap:24px}
+.contact-detail{display:flex;align-items:center;gap:16px;font-size:15px;color:var(--text-2);transition:color 0.3s}
+.contact-detail:hover{color:var(--text)}
+.contact-detail-icon{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
+.contact-detail:hover .contact-detail-icon{border-color:var(--accent);color:var(--accent)}
+.contact-detail-icon svg{width:18px;height:18px}
+.contact-form{padding:48px;border:1px solid var(--border);border-radius:24px;background:var(--card);backdrop-filter:blur(10px)}
+@media(max-width:640px){.contact-form{padding:32px 24px}}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:13px;color:var(--text-2);margin-bottom:8px;letter-spacing:0.05em}
+.form-input,.form-select,.form-textarea{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--font-body);font-size:15px;transition:all 0.3s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);background:var(--bg-2)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-3)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23A1A1A1' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:44px}
+.form-select option{background:var(--bg);color:var(--text)}
+.form-textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.form-row{grid-template-columns:1fr}}
+.form-submit{width:100%;padding:18px;background:var(--text);color:var(--bg);border-radius:12px;font-size:15px;font-weight:500;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
+.form-submit:hover{background:var(--gradient);color:#fff;transform:translateY(-2px)}
+.form-submit svg{width:16px;height:16px}
+.form-success{display:none;padding:40px;text-align:center;border-radius:12px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;margin-top:16px}
+.form-success.show{display:block;animation:fadeIn 0.4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.form-error{color:#f87171;font-size:13px;margin-top:6px;display:none}
+.form-error.show{display:block}
+
+/* ===== FINAL CTA ===== */
+.final-cta{padding:160px 0;text-align:center;position:relative;overflow:hidden}
+.final-cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(99,102,241,0.15) 0%,transparent 60%);animation:pulseGlow 8s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{opacity:0.5}50%{opacity:1}}
+.final-cta-title{font-family:var(--font-display);font-size:clamp(48px,8vw,120px);font-weight:500;letter-spacing:-0.04em;line-height:0.95;margin-bottom:48px;position:relative}
+.final-cta-title .gradient{background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradientShift 6s ease infinite}
+.final-cta .btn{position:relative}
+
+/* ===== FOOTER ===== */
+.footer{padding:80px 0 40px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:64px;margin-bottom:64px}
+@media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr;gap:40px}}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr;gap:32px}}
+.footer-brand .nav-logo{margin-bottom:20px;font-size:16px}
+.footer-desc{font-size:14px;color:var(--text-2);line-height:1.6;max-width:320px}
+.footer-col-title{font-family:var(--font-display);font-size:14px;font-weight:500;margin-bottom:24px;letter-spacing:0.05em}
+.footer-links{display:flex;flex-direction:column;gap:12px}
+.footer-links a{font-size:14px;color:var(--text-2);transition:color 0.3s}
+.footer-links a:hover{color:var(--text)}
+.footer-bottom{padding-top:32px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:13px;color:var(--text-3)}
+.footer-legal{display:flex;gap:24px}
+.footer-legal a{font-size:13px;color:var(--text-3);transition:color 0.3s}
+.footer-legal a:hover{color:var(--text)}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+/* ===== PAGE LOAD ===== */
+.page-loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.6s,visibility 0.6s}
+.page-loader.hidden{opacity:0;visibility:hidden}
+.loader-text{font-family:var(--font-display);font-size:24px;letter-spacing:0.3em;animation:loaderPulse 1.5s ease-in-out infinite}
+@keyframes loaderPulse{0%,100%{opacity:0.3}50%{opacity:1}}
+</style>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-text">MORSALIN</div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="nav-logo">MORSALIN AGENCY</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#process">Process</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Start a Project <i data-lucide="arrow-right"></i></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#work">Work</a>
+  <a href="#about">About</a>
+  <a href="#process">Process</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-glow hero-glow-3"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-label">CREATIVE DIGITAL AGENCY</div>
+    <h1 class="hero-title">
+      <span class="line"><span class="line-inner">WE BUILD DIGITAL</span></span>
+      <span class="line"><span class="line-inner"><span class="gradient">EXPERIENCES</span> THAT</span></span>
+      <span class="line"><span class="line-inner">MOVE BUSINESSES.</span></span>
+    </h1>
+    <p class="hero-subtitle">We design and build high-performance digital experiences that help ambitious brands stand out, connect with their audience, and grow.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">Start a Project <i data-lucide="arrow-right"></i></a>
+      <a href="#work" class="btn btn-secondary">Explore Our Work <i data-lucide="arrow-down-right"></i></a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Trusted By -->
+<section class="marquee-section" style="padding:80px 0">
+  <div class="marquee-label">TRUSTED BY AMBITIOUS BRANDS</div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item">NOVA</div>
+      <div class="marquee-item">AETHER</div>
+      <div class="marquee-item">VELORA</div>
+      <div class="marquee-item">ORBIT</div>
+      <div class="marquee-item">LUMEN</div>
+      <div class="marquee-item">MONARCH</div>
+      <div class="marquee-item">PRISM</div>
+      <div class="marquee-item">VERTEX</div>
+      <div class="marquee-item">NOVA</div>
+      <div class="marquee-item">AETHER</div>
+      <div class="marquee-item">VELORA</div>
+      <div class="marquee-item">ORBIT</div>
+      <div class="marquee-item">LUMEN</div>
+      <div class="marquee-item">MONARCH</div>
+      <div class="marquee-item">PRISM</div>
+      <div class="marquee-item">VERTEX</div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">WHAT WE DO</div>
+      <h2 class="section-title">Strategy, creativity, and technology — combined to build digital experiences that perform.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">01</div>
+        <i data-lucide="monitor" class="service-icon"></i>
+        <h3 class="service-name">Web Design & Development</h3>
+        <p class="service-desc">Custom websites built for performance, conversion, and brand expression.</p>
+        <div class="service-arrow">Learn more <i data-lucide="arrow-right"></i></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">02</div>
+        <i data-lucide="layout" class="service-icon"></i>
+        <h3 class="service-name">UI/UX Design</h3>
+        <p class="service-desc">User-centered interfaces that are intuitive, beautiful, and conversion-focused.</p>
+        <div class="service-arrow">Learn more <i data-lucide="arrow-right"></i></div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-number">03</div>
+        <i data-lucide="palette" class="service-icon"></i>
+        <h3 class="service-name">Branding & Identity</h3>
+        <p class="service-desc">Memorable brand systems that communicate your story and stand the test of time.</p>
+        <div class="service-arrow">Learn more <i data-lucide="arrow-right"></i></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">04</div>
+        <i data-lucide="film" class="service-icon"></i>
+        <h3 class="service-name">Video & Motion Design</h3>
+        <p class="service-desc">Cinematic video content and motion graphics that captivate your audience.</p>
+        <div class="service-arrow">Learn more <i data-lucide="arrow-right"></i></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">05</div>
+        <i data-lucide="megaphone" class="service-icon"></i>
+        <h3 class="service-name">Digital Marketing</h3>
+        <p class="service-desc">Data-driven campaigns that reach the right audience and deliver real results.</p>
+        <div class="service-arrow">Learn more <i data-lucide="arrow-right"></i></div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-number">06</div>
+        <i data-lucide="trending-up" class="service-icon"></i>
+        <h3 class="service-name">SEO & Growth</h3>
+        <p class="service-desc">Search optimization and growth strategies that drive sustainable organic traffic.</p>
+        <div class="service-arrow">Learn more <i data-lucide="arrow-right"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">SELECTED WORK</div>
+      <h2 class="section-title">A collection of projects built to solve real problems and create measurable impact.</h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-item reveal">
+        <img src="https://image.qwenlm.ai/public_source/3a5455e6-50e6-4ad4-bda4-5f52445f4c2f/1347deeaa-2eaf-40e3-b3f3-3ca7f336a5ce.png" alt="NOVA E-commerce" class="work-image" loading="lazy">
+        <div class="work-overlay">
+          <div class="work-category">E-COMMERCE</div>
+          <h3 class="work-name">NOVA</h3>
+          <p class="work-desc">A luxury e-commerce experience designed to convert.</p>
+          <div class="work-meta">
+            <span class="work-year">2024</span>
+            <div class="work-view"><i data-lucide="arrow-up-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal reveal-delay-1">
+        <img src="https://image.qwenlm.ai/public_source/3a5455e6-50e6-4ad4-bda4-5f52445f4c2f/1c7b4045c-8202-491b-a66a-45fd42e7d295.png" alt="AETHER SaaS" class="work-image" loading="lazy">
+        <div class="work-overlay">
+          <div class="work-category">SAAS PLATFORM</div>
+          <h3 class="work-name">AETHER</h3>
+          <p class="work-desc">Modern SaaS dashboard for data-driven teams.</p>
+          <div class="work-meta">
+            <span class="work-year">2024</span>
+            <div class="work-view"><i data-lucide="arrow-up-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal reveal-delay-2">
+        <img src="https://image.qwenlm.ai/public_source/3a5455e6-50e6-4ad4-bda4-5f52445f4c2f/168c05408-08e4-4719-be45-79ff9990d203.png" alt="VELORA Fashion" class="work-image" loading="lazy">
+        <div class="work-overlay">
+          <div class="work-category">FASHION BRAND</div>
+          <h3 class="work-name">VELORA</h3>
+          <p class="work-desc">Editorial fashion brand with timeless aesthetics.</p>
+          <div class="work-meta">
+            <span class="work-year">2023</span>
+            <div class="work-view"><i data-lucide="arrow-up-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal reveal-delay-3">
+        <img src="https://image.qwenlm.ai/public_source/3a5455e6-50e6-4ad4-bda4-5f52445f4c2f/1335d2f60-f112-47c2-9a76-96bb47887c87.png" alt="ORBIT Fintech" class="work-image" loading="lazy">
+        <div class="work-overlay">
+          <div class="work-category">FINTECH</div>
+          <h3 class="work-name">ORBIT</h3>
+          <p class="work-desc">Fintech product reimagined for modern investors.</p>
+          <div class="work-meta">
+            <span class="work-year">2024</span>
+            <div class="work-view"><i data-lucide="arrow-up-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal">
+        <img src="https://image.qwenlm.ai/public_source/3a5455e6-50e6-4ad4-bda4-5f52445f4c2f/196e219d2-a368-44d7-aae1-eb7e7ea57b74.png" alt="LUMEN Portfolio" class="work-image" loading="lazy">
+        <div class="work-overlay">
+          <div class="work-category">CREATIVE PORTFOLIO</div>
+          <h3 class="work-name">LUMEN</h3>
+          <p class="work-desc">Photography portfolio with cinematic storytelling.</p>
+          <div class="work-meta">
+            <span class="work-year">2023</span>
+            <div class="work-view"><i data-lucide="arrow-up-right"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal reveal-delay-1">
+        <img src="https://image.qwenlm.ai/public_source/3a5455e6-50e6-4ad4-bda4-5f52445f4c2f/12b6cf985-f5ef-4678-864b-578a2763120c.png" alt="MONARCH Luxury" class="work-image" loading="lazy">
+        <div class="work-overlay">
+          <div class="work-category">LUXURY BRAND</div>
+          <h3 class="work-name">MONARCH</h3>
+          <p class="work-desc">Luxury jewelry brand with timeless elegance.</p>
+          <div class="work-meta">
+            <span class="work-year">2024</span>
+            <div class="work-view"><i data-lucide="arrow-up-right"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="work-cta reveal">
+      <a href="#" class="btn btn-secondary">View All Projects <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- Case Study -->
+<section>
+  <div class="container">
+    <div class="case-study reveal">
+      <div class="case-study-label">FEATURED CASE STUDY</div>
+      <h2 class="case-study-client">NOVA</h2>
+      <div class="case-study-grid">
+        <div>
+          <div class="case-study-block-label">CHALLENGE</div>
+          <p class="case-study-block-text">The brand needed a modern digital experience that could increase engagement and improve online conversions across all devices.</p>
+        </div>
+        <div>
+          <div class="case-study-block-label">SOLUTION</div>
+          <p class="case-study-block-text">We redesigned the complete digital experience with a conversion-focused UI, optimized user journey, and premium visual identity.</p>
+        </div>
+      </div>
+      <div class="case-study-stats">
+        <div>
+          <div class="stat-number" data-target="184" data-suffix="%">0%</div>
+          <div class="stat-label">Conversion Rate Increase</div>
+        </div>
+        <div>
+          <div class="stat-number" data-target="72" data-suffix="%">0%</div>
+          <div class="stat-label">User Engagement Growth</div>
+        </div>
+        <div>
+          <div class="stat-number" data-target="41" data-suffix="%">0%</div>
+          <div class="stat-label">Bounce Rate Reduction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section style="background:var(--bg-2)">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">WHY MORSALIN?</div>
+      <h2 class="section-title">Built different. Designed to perform.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-number">01</div>
+        <h3 class="why-title">Strategy First</h3>
+        <p class="why-desc">Every project begins with deep research and strategic thinking. We don't guess — we build on data, insight, and clear objectives.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-number">02</div>
+        <h3 class="why-title">Design That Performs</h3>
+        <p class="why-desc">Beautiful design is only the beginning. We craft experiences engineered to convert, engage, and deliver measurable business results.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-number">03</div>
+        <h3 class="why-title">Technology With Purpose</h3>
+        <p class="why-desc">We use modern technology not for the sake of it, but to solve real problems — fast, scalable, and future-proof solutions.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-3">
+        <div class="why-number">04</div>
+        <h3 class="why-title">Built For Growth</h3>
+        <p class="why-desc">We don't just launch and leave. We partner with you long-term to optimize, iterate, and continuously drive growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">OUR PROCESS</div>
+      <h2 class="section-title">FROM IDEA TO IMPACT</h2>
+      <p class="section-subtitle">A proven framework that turns vision into reality.</p>
+    </div>
+    <div class="process-timeline">
+      <div class="process-line"></div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="process-step-number">01</div>
+          <h3 class="process-step-title">Discovery</h3>
+          <p class="process-step-desc">Understand the business, audience, goals, and challenges through deep research.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-1">
+          <div class="process-step-number">02</div>
+          <h3 class="process-step-title">Strategy</h3>
+          <p class="process-step-desc">Build a clear roadmap and digital strategy aligned with your business objectives.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="process-step-number">03</div>
+          <h3 class="process-step-title">Design</h3>
+          <p class="process-step-desc">Create the visual direction and user experience that brings your brand to life.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="process-step-number">04</div>
+          <h3 class="process-step-title">Development</h3>
+          <p class="process-step-desc">Turn the approved design into a fast, responsive, and scalable product.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-4">
+          <div class="process-step-number">05</div>
+          <h3 class="process-step-title">Launch & Grow</h3>
+          <p class="process-step-desc">Launch, analyze, optimize, and continuously improve for long-term success.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" style="background:var(--bg-2)">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <img src="https://image.qwenlm.ai/public_source/3a5455e6-50e6-4ad4-bda4-5f52445f4c2f/1bc18acb9-270f-4fb4-9a62-6288275c3aa4.png" alt="Morsalin Agency Studio" loading="lazy">
+      </div>
+      <div class="about-content reveal reveal-delay-1">
+        <div class="section-label">ABOUT US</div>
+        <h2 class="section-title">WE DON'T JUST MAKE THINGS LOOK GOOD. WE MAKE THEM WORK.</h2>
+        <p class="about-desc">MORSALIN AGENCY is a creative digital agency focused on building meaningful brands and high-performing digital experiences. We partner with ambitious companies to craft solutions that move businesses forward.</p>
+        <div class="about-stats">
+          <div>
+            <div class="about-stat-number">5+</div>
+            <div class="about-stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="about-stat-number">50+</div>
+            <div class="about-stat-label">Projects Completed</div>
+          </div>
+          <div>
+            <div class="about-stat-number">30+</div>
+            <div class="about-stat-label">Clients Served</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary">About Us <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-item-number" data-target="50" data-suffix="+">0</div>
+        <div class="stat-item-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-item-number" data-target="30" data-suffix="+">0</div>
+        <div class="stat-item-label">Happy Clients</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-item-number" data-target="5" data-suffix="+">0</div>
+        <div class="stat-item-label">Years Experience</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-item-number" data-target="98" data-suffix="%">0</div>
+        <div class="stat-item-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">CLIENT REVIEWS</div>
+      <h2 class="section-title">What our clients say</h2>
+      <p class="section-subtitle">Real feedback from the brands we've partnered with.</p>
+    </div>
+    <div class="testimonials reveal">
+      <div class="testimonial-slider">
+        <div class="testimonial-track" id="testimonialTrack">
+          <!-- Slides injected via JS -->
+        </div>
+        <div class="testimonial-controls">
+          <button class="testimonial-btn" id="prevBtn" aria-label="Previous"><i data-lucide="arrow-left"></i></button>
+          <div class="testimonial-dots" id="testimonialDots"></div>
+          <button class="testimonial-btn" id="nextBtn" aria-label="Next"><i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--bg-2)">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">What services do you offer?<span class="faq-icon"><i data-lucide="plus"></i></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We offer a full suite of digital services including Web Design & Development, UI/UX Design, Branding & Visual Identity, Video Editing & Motion Graphics, Digital Marketing, SEO, and Social Media Creative.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How does your project process work?<span class="faq-icon"><i data-lucide="plus"></i></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Our process follows five key stages: Discovery, Strategy, Design, Development, and Launch & Growth. Each phase is collaborative and transparent, ensuring your vision is realized at every step.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long does a project usually take?<span class="faq-icon"><i data-lucide="plus"></i></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Project timelines vary based on scope and complexity. A typical website project takes 6–12 weeks from discovery to launch. We'll provide a clear timeline during our initial consultation.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How much does a website cost?<span class="faq-icon"><i data-lucide="plus"></i></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Every project is unique. We offer custom pricing based on your specific needs, scope, and goals. Contact us for a tailored quote that fits your budget and objectives.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you work with international clients?<span class="faq-icon"><i data-lucide="plus"></i></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Absolutely. We work with clients worldwide. Our remote-first approach and flexible communication ensure smooth collaboration regardless of location or time zone.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you provide maintenance after launch?<span class="faq-icon"><i data-lucide="plus"></i></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. We offer ongoing maintenance, optimization, and growth support packages to ensure your digital product continues to perform and evolve with your business.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can you redesign an existing website?<span class="faq-icon"><i data-lucide="plus"></i></span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Of course. We specialize in transforming existing websites into modern, high-performing digital experiences. We'll audit your current site and create a strategic redesign plan.</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:64px" class="reveal">
+      <a href="#contact" class="btn btn-secondary">Still have questions? <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label">GET IN TOUCH</div>
+        <h2 class="section-title">LET'S BUILD SOMETHING GREAT.</h2>
+        <p class="contact-desc">Have an idea, a project, or a challenge? Tell us about it and let's turn it into something remarkable.</p>
+        <div class="contact-details">
+          <a href="mailto:hello@morsalinagency.com" class="contact-detail">
+            <div class="contact-detail-icon"><i data-lucide="mail"></i></div>
+            <span>hello@morsalinagency.com</span>
+          </a>
+          <a href="tel:+1234567890" class="contact-detail">
+            <div class="contact-detail-icon"><i data-lucide="phone"></i></div>
+            <span>+1 (234) 567-890</span>
+          </a>
+          <a href="https://wa.me/1234567890" target="_blank" rel="noopener" class="contact-detail">
+            <div class="contact-detail-icon"><i data-lucide="message-circle"></i></div>
+            <span>WhatsApp — Chat with us</span>
+          </a>
+          <div class="contact-detail">
+            <div class="contact-detail-icon"><i data-lucide="map-pin"></i></div>
+            <span>Dhaka, Bangladesh</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-1">
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Full Name *</label>
+              <input type="text" id="name" class="form-input" placeholder="John Doe" required>
+              <div class="form-error" id="nameError">Please enter your name</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input type="email" id="email" class="form-input" placeholder="john@company.com" required>
+              <div class="form-error" id="emailError">Please enter a valid email</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input type="tel" id="phone" class="form-input" placeholder="+1 234 567 890">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="company">Company</label>
+              <input type="text" id="company" class="form-input" placeholder="Your Company">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="service">Service Needed *</label>
+              <select id="service" class="form-select" required>
+                <option value="">Select a service</option>
+                <option>Web Design & Development</option>
+                <option>UI/UX Design</option>
+                <option>Branding & Identity</option>
+                <option>Video & Motion Design</option>
+                <option>Digital Marketing</option>
+                <option>SEO & Growth</option>
+              </select>
+              <div class="form-error" id="serviceError">Please select a service</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="budget">Budget</label>
+              <select id="budget" class="form-select">
+                <option value="">Select budget range</option>
+                <option>$1,000 — $5,000</option>
+                <option>$5,000 — $10,000</option>
+                <option>$10,000 — $25,000</option>
+                <option>$25,000+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="details">Project Details *</label>
+            <textarea id="details" class="form-textarea" placeholder="Tell us about your project..." required></textarea>
+            <div class="form-error" id="detailsError">Please describe your project</div>
+          </div>
+          <button type="submit" class="form-submit">Send Project Inquiry <i data-lucide="send"></i></button>
+          <div class="form-success" id="formSuccess">✓ Thank you! Your inquiry has been sent successfully. We'll get back to you within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <div class="final-cta-bg"></div>
+  <div class="container" style="position:relative">
+    <h2 class="final-cta-title reveal">
+      READY TO BUILD<br>
+      <span class="gradient">WHAT'S NEXT?</span>
+    </h2>
+    <div class="reveal reveal-delay-1">
+      <a href="#contact" class="btn btn-primary">Start Your Project <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">MORSALIN AGENCY</div>
+        <p class="footer-desc">Creative digital experiences for ambitious brands. We build digital experiences that move businesses forward.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <a href="#services">Web Development</a>
+          <a href="#services">UI/UX</a>
+          <a href="#services">Branding</a>
+          <a href="#services">Video Editing</a>
+          <a href="#services">Marketing</a>
+          <a href="#services">SEO</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Social</div>
+        <div class="footer-links">
+          <a href="#" target="_blank" rel="noopener">Facebook</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener">Behance</a>
+          <a href="#" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 MORSALIN AGENCY. All Rights Reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Initialize Lucide icons
+lucide.createIcons();
+
+// ===== PAGE LOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('pageLoader').classList.add('hidden');
+    initHeroAnimations();
+  }, 600);
+});
+
+// ===== NAVBAR =====
+const navbar = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('active');
+  document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+// ===== HERO ANIMATIONS =====
+function initHeroAnimations() {
+  gsap.to('.hero-title .line-inner', {
+    y: 0,
+    duration: 1.2,
+    stagger: 0.15,
+    ease: 'power4.out',
+    delay: 0.2
+  });
+  gsap.from('.hero-label', { opacity: 0, y: 20, duration: 0.8, delay: 0.1, ease: 'power3.out' });
+  gsap.from('.hero-subtitle', { opacity: 0, y: 30, duration: 1, delay: 0.8, ease: 'power3.out' });
+  gsap.from('.hero-buttons', { opacity: 0, y: 30, duration: 1, delay: 1, ease: 'power3.out' });
+  gsap.from('.scroll-indicator', { opacity: 0, duration: 1, delay: 1.5 });
+}
+
+// ===== PARTICLES =====
+const particlesContainer = document.getElementById('heroParticles');
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+  p.style.animationDelay = Math.random() * 10 + 's';
+  p.style.width = p.style.height = (Math.random() * 2 + 1) + 'px';
+  particlesContainer.appendChild(p);
+}
+
+// ===== SCROLL REVEAL =====
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ===== COUNTER ANIMATION =====
+const counterElements = document.querySelectorAll('[data-target]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.animated) {
+      entry.target.dataset.animated = 'true';
+      const target = parseInt(entry.target.dataset.target);
+      const suffix = entry.target.dataset.suffix || '';
+      const duration = 2000;
+      const start = performance.now();
+      const animate = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(eased * target);
+        entry.target.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
+    }
+  });
+}, { threshold: 0.5 });
+
+counterElements.forEach(el => counterObserver.observe(el));
+
+// ===== SERVICE CARD MOUSE TRACKING =====
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mx', x + '%');
+    card.style.setProperty('--my', y + '%');
+  });
+});
+
+// ===== TESTIMONIALS =====
+const testimonials = [
+  { name: 'Sarah Mitchell', role: 'CEO, Nova Fashion', text: 'Morsalin Agency transformed our entire digital presence. The results exceeded every expectation — our conversions jumped 184% in just three months.' },
+  { name: 'David Chen', role: 'Founder, Aether Tech', text: 'Working with this team felt like having an in-house creative department. Strategic, fast, and incredibly talented. They truly understand modern digital.' },
+  { name: 'Emma Rodriguez', role: 'Marketing Director, Velora', text: 'The attention to detail is unmatched. Every pixel, every interaction was intentional. Our brand has never looked or performed better.' },
+  { name: 'James Wilson', role: 'COO, Orbit Finance', text: 'They don\'t just design — they solve business problems. The ROI on our new platform paid for itself within the first quarter.' },
+  { name: 'Olivia Park', role: 'Creative Director, Lumen', text: 'A rare agency that combines artistic vision with technical excellence. Our portfolio site has become a conversation starter in the industry.' },
+  { name: 'Michael Thompson', role: 'Founder, Monarch Jewelry', text: 'Luxury demands perfection. Morsalin delivered a website that captures the essence of our brand with breathtaking precision.' },
+  { name: 'Sophia Anderson', role: 'Head of Growth, Prism', text: 'From strategy to execution, the process was seamless. They\'re not just vendors — they\'re true partners in growth.' },
+  { name: 'Ryan Foster', role: 'CEO, Vertex Labs', text: 'The most professional agency we\'ve worked with. Clear communication, stunning design, and a product that actually converts.' },
+  { name: 'Isabella Martinez', role: 'Brand Manager, Stellar', text: 'They understood our vision immediately and elevated it beyond what we imagined. The rebrand was a game-changer for our business.' },
+  { name: 'Alexander Kim', role: 'Founder, Horizon', text: 'Five stars isn\'t enough. Morsalin Agency is in a league of their own. Premium quality, premium results, premium experience.' }
+];
+
+const track = document.getElementById('testimonialTrack');
+const dotsContainer = document.getElementById('testimonialDots');
+let currentSlide = 0;
+let autoRotateInterval;
+
+testimonials.forEach((t, i) => {
+  const slide = document.createElement('div');
+  slide.className = 'testimonial-slide' + (i === 0 ? ' active' : '');
+  slide.innerHTML = `
+    <div class="testimonial-stars">${'<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'.repeat(5)}</div>
+    <p class="testimonial-text">"${t.text}"</p>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar">${t.name.split(' ').map(n => n[0]).join('')}</div>
+      <div>
+        <div class="testimonial-name">${t.name}</div>
+        <div class="testimonial-role">${t.role}</div>
+      </div>
+    </div>
+  `;
+  track.appendChild(slide);
+
+  const dot = document.createElement('div');
+  dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+});
+
+function goToSlide(index) {
+  const slides = track.querySelectorAll('.testimonial-slide');
+  const dots = dotsContainer.querySelectorAll('.testimonial-dot');
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = index;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  resetAutoRotate();
+}
+
+function nextSlide() { goToSlide((currentSlide + 1) % testimonials.length); }
+function prevSlide() { goToSlide((currentSlide - 1 + testimonials.length) % testimonials.length); }
+
+document.getElementById('nextBtn').addEventListener('click', nextSlide);
+document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+function startAutoRotate() { autoRotateInterval = setInterval(nextSlide, 5000); }
+function resetAutoRotate() { clearInterval(autoRotateInterval); startAutoRotate(); }
+startAutoRotate();
+
+// Swipe support
+let touchStartX = 0;
+track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+track.addEventListener('touchend', (e) => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+});
+
+// Pause on hover
+track.addEventListener('mouseenter', () => clearInterval(autoRotateInterval));
+track.addEventListener('mouseleave', startAutoRotate);
+
+// ===== FAQ =====
+document.querySelectorAll('.faq-item').forEach(item => {
+  const question = item.querySelector('.faq-question');
+  const answer = item.querySelector('.faq-answer');
+  question.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+    if (!isActive) {
+      item.classList.add('active');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+// ===== CONTACT FORM =====
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let valid = true;
+  const fields = [
+    { id: 'name', error: 'nameError' },
+    { id: 'email', error: 'emailError' },
+    { id: 'service', error: 'serviceError' },
+    { id: 'details', error: 'detailsError' }
+  ];
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    const err = document.getElementById(f.error);
+    if (!el.value.trim()) {
+      err.classList.add('show');
+      valid = false;
+    } else {
+      err.classList.remove('show');
+    }
+  });
+  const email = document.getElementById('email');
+  if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+    document.getElementById('emailError').classList.add('show');
+    valid = false;
+  }
+  if (valid) {
+    document.getElementById('formSuccess').classList.add('show');
+    contactForm.reset();
+    setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
+  }
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// ===== MAGNETIC BUTTONS =====
+document.querySelectorAll('.btn, .nav-cta').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+// ===== PARALLAX ON HERO GLOWS =====
+window.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 2;
+  const y = (e.clientY / window.innerHeight - 0.5) * 2;
+  document.querySelectorAll('.hero-glow').forEach((g, i) => {
+    const speed = (i + 1) * 15;
+    g.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+  });
+});
+</script>
+</body>
+</html>
